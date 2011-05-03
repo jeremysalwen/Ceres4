@@ -1,6 +1,6 @@
 
 
-import os, os.path, string, tempfile, traceback
+import os, os.path, string, tempfile, traceback,gtk
 
 
 #sys.path.insert(0,"/usr/lib/pygtk1/lib/python"+sys.version[:3]+"/site-packages/gtk-1.2")
@@ -182,11 +182,11 @@ handle_dict={
 
 def ceresConfigStart(filename):
     global config
-        config=Config(
-            gtk.glade.XML(
-                os.path.abspath(os.path.dirname(sys.argv[0]))+"/../etc/ceresconfig.glade","Settings"),
-            filename
-            )
+    config=Config(
+        gtk.glade.XML(
+            os.path.abspath(os.path.dirname(sys.argv[0]))+"/../etc/ceresconfig.glade","Settings"),
+        filename
+        )
         
 
 if __name__=="__main__":
