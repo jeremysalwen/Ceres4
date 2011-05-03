@@ -1,10 +1,19 @@
-all_compiled: sndlib_compiled
+
+
+all_compiled: pygtk1_compiled sndlib_compiled
 	touch all_compiled
 
+
 clean:
-	rm -fr libxml-1.8.17 libglade-0.17 pygtk-0.6.12 sndlib libxml_compiled libglade_compiled pygtk1_compiled openmotif_compiled glib-1.2.10 glib_compiled gtk+-1.2.10 gtk+_compiled openmotif-2.3.2 sndlib_compiled all_compiled install-dir/*
+	rm -fr pygtk-0.6.12 sndlib pygtk1_compiled sndlib_compiled all_compiled install-dir/*
 
 
+install:
+	cd pygtk-0.6.12 && make install
+
+
+pygtk1_compiled: ../Makefile
+	bash make_pygtk1.sh $(PYGTK1PATH)
 
 #http://ccrma.stanford.edu/software/snd/sndlib/
 sndlib_compiled:
