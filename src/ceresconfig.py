@@ -7,6 +7,7 @@ import os, os.path, string, tempfile, traceback
 #sys.path.insert(0,os.path.abspath(os.path.dirname(sys.argv[0]))+"/../lib/python"+sys.version[:3]+"/site-packages/gtk-1.2")
 #sys.path.insert(0, PYGTK1PLACEMENT  +"/../lib/python"+sys.version[:3]+"/site-packages/gtk-1.2")
 
+
 def lrstrip(dasstring):
     dasstring=string.lstrip(dasstring)
     dasstring=string.rstrip(dasstring)
@@ -181,15 +182,6 @@ handle_dict={
 
 def ceresConfigStart(filename):
     global config
-
-    if pygtkversion==1:
-        config=Config(
-            libglade.GladeXML(
-                os.path.abspath(os.path.dirname(sys.argv[0]))+"/../etc/ceresconfig.glade","Settings"
-                ),
-            filename
-            )
-    else:
         config=Config(
             gtk.glade.XML(
                 os.path.abspath(os.path.dirname(sys.argv[0]))+"/../etc/ceresconfig.glade","Settings"),

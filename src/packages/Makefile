@@ -1,4 +1,4 @@
-
+all: all_compiled
 
 all_compiled: sndlib_compiled
 	touch all_compiled
@@ -18,7 +18,7 @@ sndlib_compiled:
 	cd sndlib;\
 	./configure $(SNDLIBWITHJACK) --with-pic --without-guile;\
 	make;\
-	touch sndlib_compiled\
+	touch ../sndlib_compiled\
 	" >makesource.sh
 	sh makesource.sh
 	rm makesource.sh
