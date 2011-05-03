@@ -1,19 +1,14 @@
 
 
-all_compiled: pygtk1_compiled sndlib_compiled
+all_compiled: sndlib_compiled
 	touch all_compiled
 
 
 clean:
-	rm -fr pygtk-0.6.12 sndlib pygtk1_compiled sndlib_compiled all_compiled install-dir/*
+	rm -fr sndlib sndlib_compiled all_compiled install-dir/*
 
 
 install:
-	cd pygtk-0.6.12 && make install
-
-
-pygtk1_compiled: ../Makefile
-	bash make_pygtk1.sh $(PYGTK1PATH)
 
 #http://ccrma.stanford.edu/software/snd/sndlib/
 sndlib_compiled:

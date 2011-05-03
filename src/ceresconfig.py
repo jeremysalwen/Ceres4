@@ -7,25 +7,6 @@ import os, os.path, string, tempfile, traceback
 #sys.path.insert(0,os.path.abspath(os.path.dirname(sys.argv[0]))+"/../lib/python"+sys.version[:3]+"/site-packages/gtk-1.2")
 #sys.path.insert(0, PYGTK1PLACEMENT  +"/../lib/python"+sys.version[:3]+"/site-packages/gtk-1.2")
 
-import gtk
-
-
-try:
-    pygtkversion=1
-    import libglade
-except:
-    pygtkversion=2
-    import gtk.glade
-
-if pygtkversion==3:
-    print
-    print "You dont have pygtk1, but pygtk2. Ceres will not work with pygtk2.\n"
-    print "The easiest way to get pygtk1 into the system is probably to install a new Python"
-    print "alongside the old one. This new python should only have pygtk1 installed, and not pygtk2."
-    print "Please read the INSTALL file (\"TEST\" chapter) for more information."
-    print
-    sys.exit(0)
-
 def lrstrip(dasstring):
     dasstring=string.lstrip(dasstring)
     dasstring=string.rstrip(dasstring)
