@@ -17,7 +17,7 @@ except:
     pygtkversion=2
     import gtk.glade
 
-if pygtkversion==2:
+if pygtkversion==3:
     print
     print "You dont have pygtk1, but pygtk2. Ceres will not work with pygtk2.\n"
     print "The easiest way to get pygtk1 into the system is probably to install a new Python"

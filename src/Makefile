@@ -17,8 +17,8 @@ YEAR=2010
 #----------------USER SETTINGS-------------------------------
 
 #  No trailing slash!
-INSTALLPATH=/home/kjetil/site
-#INSTALLPATH=/usr/local
+#INSTALLPATH=/home/kjetil/site
+INSTALLPATH=/usr/local
 
 
 # If you don't want to compile sndlib with jack-support, set SNDLIBWITHJACK to nothing.
@@ -82,7 +82,8 @@ CC=$(GCC)
 #--------------------
 # X11PATH is usually /usr/X11R6/.  No trailing slash!
 
-X11PATH=/usr/X11R6
+#removed by Jeremy, because we don't have centralized X11
+#X11PATH=/usr/X11R6
 
 
 
@@ -164,23 +165,19 @@ PYTHONEXE=/usr/bin/env python
 
 SHAREPATH=$(INSTALLPATH)/share/ceres
 
-# Where pygtk1 is (going to be) installed. No trailing slash!
-PYGTK1PATH=$(SHAREPATH)
-
-
 
 PYPATH=`cat pypath.comp`
 
-DAS-CFLAGS= -Ipackages/openmotif-2.3.2/lib -I$(X11PATH)/include  -I$(PYPATH)  $(ADDITIONALCFLAGS) -DVERSION=$(VERSION) -DYEAR=$(YEAR) $(USEJACK)
+DAS-CFLAGS= -I$/usr/include/X11  -I$(PYPATH)  $(ADDITIONALCFLAGS) -DVERSION=$(VERSION) -DYEAR=$(YEAR) $(USEJACK)
 
 
 #Static compilation:
-#DAS-LDFLAGS= /hom/kjetism/lib/sndlib.a /site/lib/libsndfile.a /site/lib/libXm.a -L/usr/X11R6/lib -lXt -lXext -lX11 -lXp -lXpm -lSM -lXIE -lICE -lm -lpthread -lasound -ldl -static
+#DAS-LDFLAGS= /hom/kjetism/lib/sndlib.a /site/lib/libsndfile.a /site/lib/libXm.a -L/usr/lib/X11 -lXt -lXext -lX11 -lXp -lXpm -lSM -lXIE -lICE -lm -lpthread -lasound -ldl -static
 #/usr/lib/libXm.so.2
 #Dynamic compilation:
-MOTIF-LIBS=packages/openmotif-2.3.2/lib/Xm/.libs/libXm.a -lXmu -lXt -lXext -lXp -lXft -lXrender -lfontconfig `freetype-config --libs` -lX11 -ljpeg -lpng 
-DAS-LDFLAGS= $(MOTIF-LIBS) -L$(X11PATH)/lib -lXt -lX11 $(ADDITIONALLDFLAGS) -ljack -lsamplerate
-#DAS-LDFLAGS= -L$(MOTIFPATH)/lib -Lpackages/openmotif-2.3.2/lib/Xm/.libs/libXm.a -lXm -L$(X11PATH)/lib -lXt -lX11 $(ADDITIONALLDFLAGS) -ljack -lsamplerate
+MOTIF-LIBS=/usr/lib/libXmu.a /usr/lib/libXm.so -lXmu -lXt -lXext -lXp -lXft -lXrender -lfontconfig `freetype-config --libs` -lX11 -ljpeg -lpng 
+DAS-LDFLAGS= $(MOTIF-LIBS) -L/usr/lib/X11 -lXt -lX11 $(ADDITIONALLDFLAGS) -ljack -lsamplerate
+#DAS-LDFLAGS= -L$(MOTIFPATH)/lib -Lpackages/openmotif-2.3.2/lib/Xm/.libs/libXm.a -lXm -L/usr/lib/X11 -lXt -lX11 $(ADDITIONALLDFLAGS) -ljack -lsamplerate
 #/hom/kjetism/lib/sndlib.a 
 
 ALLDEP=pypath.comp
@@ -243,7 +240,7 @@ test:
 	@echo
 
 install: $(ALL) 
-	cd packages && make install PYGTK1PATH=$(PYGTK1PATH)
+	cd packages && make
 
 	mkdir -p $(SHAREPATH)
 	mkdir -p $(SHAREPATH)/etc
@@ -259,12 +256,6 @@ install: $(ALL)
 	cp ../bin/ceres $(INSTALLPATH)/bin/
 
 	@echo
-	@echo --Program installed successfully!--
-	@echo "--Now installing Motif configuration file, this might fail in case you are not root, but it's not that important.--"
-	@echo
-	mkdir -p $(X11PATH)/lib/X11/app-defaults/Ceres
-	cp ../etc/Ceres.ad $(X11PATH)/lib/X11/app-defaults/Ceres
-
 
 uninstall:
 	rm -fr $(SHAREPATH)
@@ -310,7 +301,6 @@ run:
 ../bin/ceres: Makefile
 #	rm -f ../bin/ceres
 	echo "#!/bin/sh" >../bin/ceres
-	echo 'export LD_PRELOAD="$(PYGTK1PATH)/lib/libgtk-1.2.so.0 $(PYGTK1PATH)/lib/libgdk-1.2.so.0 $(PYGTK1PATH)/lib/libgmodule-1.2.so.0 $(PYGTK1PATH)/lib/libglib-1.2.so.0 $(PYGTK1PATH)/lib/libgthread.so"' >>../bin/ceres
 	echo "LD_LIBRARY_PATH=$(PYGTK1PATH)/lib:$LD_LIBRARY_PATH python $(SHAREPATH)/bin/ceres.py \$$@" >>../bin/ceres	
 	chmod a+rx ../bin/ceres
 
