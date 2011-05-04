@@ -1,6 +1,6 @@
 
 
-import os, os.path, string, tempfile, traceback,gtk
+import os, os.path, string, tempfile, traceback,gtk,gtk.glade
 
 
 #sys.path.insert(0,"/usr/lib/pygtk1/lib/python"+sys.version[:3]+"/site-packages/gtk-1.2")
