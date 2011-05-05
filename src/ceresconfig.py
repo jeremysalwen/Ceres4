@@ -81,7 +81,7 @@ class Config:
     def generalHandler(self,widg):
         name=widg.get_name()
 
-        if isinstance(widg, gtk.Button):
+        if type(widg)== gtk.Button:
             if name=="Ok":
                 self.writeConfFile(self.tempfilename)
                 gtk.main_quit()
@@ -110,7 +110,7 @@ class Config:
                 widgnamestrip=string.split(name,"-",1)
                 widgname="fs_"+widgnamestrip[1]
                 widg=self.fileselectors[widgname].get_widget(widgname)
-                if widgnamestrip[0]=="fsok":
+                if widgnamestrip[1]=="fsok":
                     filename=widg.get_filename()
                     if widgname!="fs_frequency_file":
                         filename=os.path.dirname(filename)+"/"
