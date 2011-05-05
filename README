@@ -1,0 +1,4 @@
+This repository is essentially a copy of ceres, with modifications made 
+by Jeremy Salwen to get it to work with gtk2, and system installed 
+libraries.  Hopefully some of the changes will get incorporated into 
+ceres.
