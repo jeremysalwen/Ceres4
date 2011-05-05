@@ -84,16 +84,16 @@ class Config:
         if isinstance(widg, gtk.Button):
             if name=="Ok":
                 self.writeConfFile(self.tempfilename)
-                gtk.mainquit()
+                gtk.main_quit()
                 return
             if name=="Cancel":
-                gtk.mainquit()
+                gtk.main_quit()
                 return
             if name=="Save":
                 self.writeConfFile(self.conffilename)
                 self.writeConfFile(self.tempfilename)
                 if self.getVar("close_window_when_pressing_save")==1:
-                    gtk.mainquit()
+                    gtk.main_quit()
                 return
             
             if name[:7]=="browse+":
@@ -132,7 +132,7 @@ class Config:
             
                 
     def destroy(self):
-        gtk.mainquit()
+        gtk.main_quit()
 
     def show(self):
         self.xmltree.signal_autoconnect(handle_dict)
@@ -144,7 +144,7 @@ class Config:
             else:
                 widget.set_active(self.vars[varname])
 
-        gtk.mainloop()
+        gtk.main()
         
 
 def getVar(confname):
