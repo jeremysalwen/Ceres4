@@ -42,7 +42,7 @@ class Config:
             splitline[0]=lrstrip(splitline[0])
             splitline[1]=lrstrip(splitline[1])
 
-            if isinstance(self.xmltree.get_widget(splitline[0]),get.Entry):
+            if isinstance(self.xmltree.get_widget(splitline[0]),gtk.Entry):
                 self.vars[splitline[0]]=splitline[1]
             else:
                 self.vars[splitline[0]]=int(splitline[1])
@@ -139,7 +139,7 @@ class Config:
         varnames=self.vars.keys()
         for varname in varnames:
             widget=self.xmltree.get_widget(varname)
-            if isinstance(widget,  gtk.GtkEntry):
+            if isinstance(widget,  gtk.Entry):
                 widget.set_text(self.vars[varname])
             else:
                 widget.set_active(self.vars[varname])
