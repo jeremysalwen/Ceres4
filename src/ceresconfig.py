@@ -42,7 +42,7 @@ class Config:
             splitline[0]=lrstrip(splitline[0])
             splitline[1]=lrstrip(splitline[1])
 
-            if self.xmltree.get_widget(splitline[0]).get_type()==gtk.GtkEntry().get_type():
+            if isinstance(self.xmltree.get_widget(splitline[0]),get.Entry):
                 self.vars[splitline[0]]=splitline[1]
             else:
                 self.vars[splitline[0]]=int(splitline[1])
@@ -56,7 +56,7 @@ class Config:
         varnames=self.vars.keys()
         varnames.sort()
         for varname in varnames:
-            if self.xmltree.get_widget(varname).get_type()==gtk.GtkEntry().get_type():
+            if isinstance(self.xmltree.get_widget(varname), gtk.Entry):
                 file.write(varname+"="+self.vars[varname]+"\n")
             else:
                 file.write("%s=%d\n" % (varname,self.vars[varname]))
@@ -72,16 +72,16 @@ class Config:
             return self.vars[confname]
         widg=self.xmltree.get_widget(confname)
         if widg!=None:
-            if widg.get_type()==gtk.GtkEntry().get_type():
+            if isinstance(widg,gtk.Entry):
                 return widg.get_text()
             else:
-                return widg.active
+                return widg.props.active
 
 
     def generalHandler(self,widg):
         name=widg.get_name()
 
-        if widg.get_type()==gtk.GtkButton().get_type():
+        if isinstance(widg, gtk.Button):
             if name=="Ok":
                 self.writeConfFile(self.tempfilename)
                 gtk.mainquit()
@@ -120,7 +120,7 @@ class Config:
                 widg.destroy()
                 del self.fileselectors[widgname]
         else:
-            if widg.get_type()==gtk.GtkEntry().get_type():
+            if isinstance(widg,gtk.Entry):
                 widgtext=widg.get_text()
                 if name[:-1]=="temporary_path_":
                     if widgtext[-1]!="/":
@@ -128,7 +128,7 @@ class Config:
                         widg.set_text(widgtext)
                 self.vars[name]=widgtext
             else:
-                self.vars[name]=widg.active
+                self.vars[name]=widg.props.active
             
                 
     def destroy(self):
@@ -139,7 +139,7 @@ class Config:
         varnames=self.vars.keys()
         for varname in varnames:
             widget=self.xmltree.get_widget(varname)
-            if widget.get_type()==gtk.GtkEntry().get_type():
+            if isinstance(widget,  gtk.GtkEntry):
                 widget.set_text(self.vars[varname])
             else:
                 widget.set_active(self.vars[varname])
