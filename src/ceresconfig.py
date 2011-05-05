@@ -99,7 +99,7 @@ class Config:
             if name[:7]=="browse+":
                 widgnamestrip=string.split(name,"+",1)
                 widgname=widgnamestrip[1]
-                self.fileselectors[widgname]=libglade.GladeXML(
+                self.fileselectors[widgname]=gtk.glade.XML(
                     os.path.abspath(os.path.dirname(sys.argv[0]))+"/../etc/ceresconfig.glade",widgname
                     )
                 self.fileselectors[widgname].signal_autoconnect(handle_dict)
@@ -215,12 +215,12 @@ if __name__=="__main__":
             savefilename=os.path.expanduser("~/.ceres")
             okfilename=savefilename
 
-    a=sys.arv[0]
+    a=sys.argv[0]
     b=os.path.dirname(a)
     c=os.path.abspath(b)
     d=c+"/../etc/ceresconfig.glade"
     config=Config(
-        libglade.GladeXML(d,"Settings"),
+        gtk.glade.XML(d,"Settings"),
         savefilename
         )
     config.setTempFileName(okfilename)
