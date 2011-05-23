@@ -115,7 +115,7 @@ void setcoldcolors(void)
 
 void SetWatchCursor(Widget w)
 {
-        static Cursor watch = (int) NULL;
+        static Cursor watch = 0;
 
         if(!watch)
                 watch = XCreateFontCursor(XtDisplay(w),XC_watch);
