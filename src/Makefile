@@ -232,7 +232,7 @@ test:
 	@echo "#include <fontconfig/fontconfig.h>" >>libtest.c
 	@echo "#include <xcb/xcb.h> " >>libtest.c
 	@echo "int main(){return 0;}" >>libtest.c
-	gcc libtest.c -Wall -lXmu -lXt -lXext -lXp -lXft -lXrender -lfontconfig `freetype-config --libs` -lX11 -ljpeg -lpng -ljack -lsamplerate -lXau -lxcb
+	gcc libtest.c -Wall -lXmu -lXt -lXext -lXp -lXft -lXrender -lfontconfig `freetype-config --libs` -lX11 -ljpeg -lpng -ljack -lsamplerate -lXau -lxcb -lXm
 	@echo
 	@echo "-----------------------------------------------------"
 	@echo "--- Dependencies seems good. Starting to compile. ---"
