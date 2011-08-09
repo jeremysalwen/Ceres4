@@ -182,7 +182,8 @@ void UNDO_addTransform(struct FFTSound *fftsound){
   num_undos++;
   undonum++;
 
-  while(num_undos!=0 && num_undos>UNDO_getMaxNumUndos()){
+  int maxundos=UNDO_getMaxNumUndos();
+  while(num_undos!=0 && maxundos !=0 && num_undos>maxundos){
     struct Undo_transform *ut=(struct Undo_transform*)UndoRoot.next;
     struct Undo *temp=UndoRoot.next->next;
 
@@ -192,7 +193,6 @@ void UNDO_addTransform(struct FFTSound *fftsound){
 
     num_undos--;
     UndoRoot.next=temp;
-    UndoRoot.next->prev=&UndoRoot;
   }
 
   EDIT_setUndoRedoMenues();
