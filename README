@@ -1,4 +1,4 @@
-This repository is essentially a copy of ceres, with modifications made 
-by Jeremy Salwen to get it to work with gtk2, and system installed 
-libraries.  Hopefully some of the changes will get incorporated into 
-ceres.
+This repository is home to Ceres4, the next generation of the Ceres 
+spectral audio editor.  Originally developed by Oyvind Hammer, and later 
+by Kjetil S. Matheussen.  Ceres4 currently consists of Ceres ported to 
+the gtk2 platform, in addition to a single bug fix.
