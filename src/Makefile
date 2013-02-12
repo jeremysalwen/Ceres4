@@ -175,7 +175,7 @@ DAS-CFLAGS= -I$/usr/include/X11  -I$(PYPATH)  $(ADDITIONALCFLAGS) -DVERSION=$(VE
 #DAS-LDFLAGS= /hom/kjetism/lib/sndlib.a /site/lib/libsndfile.a /site/lib/libXm.a -L/usr/lib/X11 -lXt -lXext -lX11 -lXp -lXpm -lSM -lXIE -lICE -lm -lpthread -lasound -ldl -static
 #/usr/lib/libXm.so.2
 #Dynamic compilation:
-MOTIF-LIBS=/usr/lib/libXmu.a /usr/lib/libXm.so -lXmu -lXt -lXext -lXp -lXft -lXrender -lfontconfig `freetype-config --libs` -lX11 -ljpeg -lpng 
+MOTIF-LIBS=-lXm -lXmu -lXt -lXext -lXp -lXft -lXrender -lfontconfig `freetype-config --libs` -lX11 -ljpeg -lpng 
 DAS-LDFLAGS= $(MOTIF-LIBS) -L/usr/lib/X11 -lXt -lX11 $(ADDITIONALLDFLAGS) -ljack -lsamplerate
 #DAS-LDFLAGS= -L$(MOTIFPATH)/lib -Lpackages/openmotif-2.3.2/lib/Xm/.libs/libXm.a -lXm -L/usr/lib/X11 -lXt -lX11 $(ADDITIONALLDFLAGS) -ljack -lsamplerate
 #/hom/kjetism/lib/sndlib.a 
